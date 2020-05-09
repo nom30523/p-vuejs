@@ -1,9 +1,11 @@
 <template>
   <div>
     <LikeHeader headerText="hello">
+      <h2>こんにちは</h2>
       <template v-slot:title>
         <h1>トータルのいいね数</h1>
       </template>
+      <h3>初めまして</h3>
       <template v-slot:number>
         <h2>{{ number }}</h2>
       </template>
