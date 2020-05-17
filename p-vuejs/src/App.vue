@@ -23,6 +23,17 @@
       <label for="detail">イベントの内容</label>
       <textarea id="detail" cols="30" rows="10" v-model="eventData.detail"></textarea>
       <pre>{{ eventData.detail }}</pre>
+      <label for="isPrivate">非公開</label>
+      <input id="isPrivate" type="checkbox" v-model="eventData.isPrivate">
+      <pre>{{ eventData.isPrivate }}</pre>
+      <p>参加条件</p>
+      <label for="10">10代</label>
+      <input id="10" type="checkbox" value="10代" v-model="eventData.target">
+      <label for="20">20代</label>
+      <input id="20" type="checkbox" value="20代" v-model="eventData.target">
+      <label for="30">30代</label>
+      <input id="30" type="checkbox" value="30代" v-model="eventData.target">
+      <p>{{ eventData.target }}</p>
     </div>
   </div>
 </template>
@@ -41,7 +52,9 @@ export default {
         title: "タイトル",
         maxNumber: 0,
         host: "",
-        detail: ""
+        detail: "",
+        isPrivate: false,
+        target: []
       }
     }
   },
