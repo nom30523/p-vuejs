@@ -1,5 +1,16 @@
 <template>
   <div class="main">
+    <button @click="add">追加</button>
+    <ul style="width: 200px; margin: auto;">
+      <transition-group name="slide" tag="div">
+        <li
+          style="cursor: pointer;"
+          v-for="(number, index) in numbers"
+          :key="index"
+          @click="remove(index)"
+        >{{ number }}</li>
+      </transition-group>
+    </ul>
     <button @click="show = !show">切替</button>
     <br><br>
     <transition
@@ -43,11 +54,23 @@ export default {
   },
   data() {
     return {
+      numbers: [0, 1, 2],
+      nextNumber: 3,
       show: true,
       myComponent: "ComponentA"
     }
   },
   methods: {
+    randomIndex() {
+      return Math.floor(Math.random() * this.numbers.length);
+    },
+    add() {
+      this.numbers.splice(this.randomIndex(), 0, this.nextNumber);
+      this.nextNumber += 1;
+    },
+    remove(index) {
+      this.numbers.splice(index, 1);
+    },
     beforeEnter(el) {
       el.style.transform = 'scale(0)'
     },
@@ -86,6 +109,9 @@ export default {
   background-color: deeppink;
 }
 
+.fade-move {
+  transition: transform 1s;
+}
 .fade-enter {
   opacity: 0;
 }
