@@ -1,6 +1,15 @@
 <template>
   <div class="main">
     <button @click="show = !show">切替</button>
+    <br><br>
+    <transition
+      :css="false"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @leave="leave"
+    >
+      <div class="circle" v-if="show"></div>
+    </transition>
     <br>
     <button @click="myComponent = 'ComponentA'">ComponentA</button>
     <button @click="myComponent = 'ComponentB'">ComponentB</button>
@@ -37,11 +46,46 @@ export default {
       show: true,
       myComponent: "ComponentA"
     }
+  },
+  methods: {
+    beforeEnter(el) {
+      el.style.transform = 'scale(0)'
+    },
+    enter(el, done) {
+      let scale = 0;
+      const interval = setInterval(function() {
+        el.style.transform = `scale(${scale})`;
+        scale += 0.1
+        if (scale > 1) {
+          clearInterval(interval);
+          done();
+        }
+      }, 20);
+    },
+    leave(el, done) {
+      let scale = 1;
+      const interval = setInterval(function() {
+        el.style.transform = `scale(${scale})`;
+        scale -= 0.1
+        if (scale < 0) {
+          clearInterval(interval);
+          done();
+        }
+      }, 20);
+    },
   }
 }
 </script>
 
 <style scoped>
+.circle {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  border-radius: 100px;
+  background-color: deeppink;
+}
+
 .fade-enter {
   opacity: 0;
 }
