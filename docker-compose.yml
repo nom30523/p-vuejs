@@ -2,6 +2,8 @@ version: '3'
 services:
   web:
     build: .
+    working_dir: /app/p-vuejs
+    command: npm run serve
     ports:
       - 8080:8080
     volumes:

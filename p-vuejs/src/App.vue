@@ -2,9 +2,7 @@
   <div style="width: 700px; margin: auto; padding-top: 50px;">
     <Home></Home>
     <router-view name="header"></router-view>
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
+    <router-view></router-view>
   </div>
 </template>
 

@@ -38,5 +38,13 @@ export default new Router({
       path: '/hello',
       redirect: '/'
     }
-  ]
+  ],
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        selector: '#next-user',
+      };
+    }
+    // return { x: 0, y: 100 };
+  }
 });
