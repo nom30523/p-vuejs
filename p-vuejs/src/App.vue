@@ -2,7 +2,9 @@
   <div style="width: 700px; margin: auto; padding-top: 50px;">
     <Home></Home>
     <router-view name="header"></router-view>
-    <router-view></router-view>
+    <transition name="fade" mode="out-in" @before-enter="beforeEnter">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -11,6 +13,11 @@ import Home from "./views/Home.vue";
 export default {
   components: {
     Home
+  },
+  methods: {
+    beforeEnter() {
+      this.$emit('triggerScroll');
+    }
   }
 }
 </script>
